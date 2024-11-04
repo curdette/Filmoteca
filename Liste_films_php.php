@@ -53,7 +53,7 @@ $connexion = new mysqli($servername, $username, "", $dbname);
         </article>
     </article>
 </body>
-<footer> jdeijdezijf </footer>
+<footer>  </footer>
 </html>
 
 

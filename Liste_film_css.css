@@ -7,12 +7,14 @@ h1{
 }
 .cellule_interne{
     border: solid;
-    border-color: rgb(60, 19, 71);
-    padding: 30px;
-    
+    border-color: rgb(60, 19, 71);  
 }
 table {
     border-collapse: collapse;
     table-layout: fixed;
   width: 100%;
+}
+
+header{
+    background-color: aliceblue;
 }
