@@ -16,4 +16,19 @@ table,td{
 .Films_precis{
     background-color: aquamarine;
 }
+
+.découverte{
+    background-color: rgb(227, 140, 194);
+}
+.découverte_films{
+    background-color: pink;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0.6;
+    padding: 0.6;
+}
+
+footer{
+    background-color: pink;
+}
     
