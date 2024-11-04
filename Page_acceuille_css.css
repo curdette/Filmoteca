@@ -8,7 +8,11 @@ table,td{
     border-style: groove;
     border-color: purple;
     border-radius: 2px;
+
     
+}
+table{
+    margin:50px ;
 }
 #Nom_colonne{
     background-color: rgb(204, 177, 230);
