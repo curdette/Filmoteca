@@ -1,6 +1,18 @@
 h1{
-    background-color: red;
+    text-align: center;
+    text-decoration: wavy;
 }
 .informations_films{
-    background-color: red;
+    background-color: pink;
+}
+.cellule_interne{
+    border: solid;
+    border-color: rgb(60, 19, 71);
+    padding: 30px;
+    
+}
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  width: 100%;
 }
