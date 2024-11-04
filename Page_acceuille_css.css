@@ -1,4 +1,6 @@
-
+body{
+    display:flexbox;
+}
 h1{
     text-align: center;
     background-color: rgb(234, 190, 206);
