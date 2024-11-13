@@ -1,0 +1,11 @@
+Les étapes pour docker :
+IMPORTANT fermer wamp (normalement il est fermer de base donc ne pas l'ouvrir)
+1) Clone le repertoire envoyer par le prof (ou on veut)
+2) ouvrir un terminale et écrire : make up
+3) changer le fichier hosts (demander à chat gpt où il est et comment le changer) depuis l'invite de commande
+-> on met dedans : 127.0.0.1 filmoteca.local
+4) sur google aller sur filmoteca.local 
+5) aller sur localhost:8081
+6) Entrer les information pour se connecter qui se trouve dans le fichier .env du repository du prof
+
+Important : ne pas modifier les fichier du repository du profs !!!!
