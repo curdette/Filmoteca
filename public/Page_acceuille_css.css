@@ -1,0 +1,40 @@
+body{
+    display:flexbox;
+}
+h1{
+    text-align: center;
+    background-color: rgb(234, 190, 206);
+}
+
+table,td{
+    border-style: groove;
+    border-color: purple;
+    border-radius: 2px;
+
+    
+}
+table{
+    margin:50px ;
+}
+#Nom_colonne{
+    background-color: rgb(204, 177, 230);
+}
+.Films_precis{
+    background-color: aquamarine;
+}
+
+.découverte{
+    background-color: rgb(227, 140, 194);
+}
+.découverte_films{
+    background-color: pink;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0.6;
+    padding: 0.6;
+}
+
+footer{
+    background-color: pink;
+}
+    
