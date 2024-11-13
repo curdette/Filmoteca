@@ -8,7 +8,7 @@ $connexion = new mysqli($servername, $username, "", $dbname);
 ?>
 <html> 
 <head> 
-    <title> La liste des films hh</title> 
+    <title> La liste des films </title> 
     <link rel="stylesheet" href="Liste_film_css.css" type="text/css" />
 </head>
 
