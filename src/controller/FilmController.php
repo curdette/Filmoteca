@@ -18,9 +18,9 @@ class FilmController
         echo json_encode($films);
        /* foreach( $films as $film ){
             $filmEntity = new FilmEntity();
-            $filmEntity->setTitle(film['titre']);
-            $filmEntity->setSynopsis($film->getSynopsis());
-            $filmEntity->setDirector($film->getDirector());
+            $filmEntity->setTitle($film['titre']);
+            $filmEntity->setSynopsis($film[synopsis]);
+            $filmEntity->setDirector($[director]));
         }*/
     }
 
