@@ -27,11 +27,14 @@ class FilmController
     public function create()
     {
         echo "Création d'un film";
+
     }
 
     public function read()
     {
         echo "Lecture d'un film";
+        //regarde l'id après le read dans l'url, puis on va regarder le tableau d'objet pour trouver celui qui à un id=7
+        //On récupère les information grace au tableau d'objet et on l'affiche
     }
 
     public function update()

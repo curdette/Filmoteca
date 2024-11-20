@@ -21,7 +21,7 @@ class Router
         $parts = explode('/', $uri); // Exemple : ['films', 'create']
 
         $route = $parts[0] ?? null;   // 'films'
-        $action = $parts[1] ?? null; // 'create'
+        $action = $parts[1] ?? null; // 'create' //est ce qu'on récupère l'id ? si non il faut faire en sorte de le récupéerer pour pouvoir dire où on va
 
         // Définit les routes et leurs contrôleurs associés
         $routes = [
@@ -44,6 +44,7 @@ class Router
             if (method_exists($controller, $action)) {
                 $queryParams = $_GET; // Récupère les paramètres éventuels
                 $controller->$action($queryParams); // Appelle la méthode dynamique correspondant à l'action du contrôleur
+                //c'est ici qu'on devrait gérer le id=7
             } else {
                 echo "Action '$action' not found in $controllerName";
             }

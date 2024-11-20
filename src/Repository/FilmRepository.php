@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Core\DatabaseConnection;
 use App\Service\EntityMapper;
-use App\Entity\FilmEntity;
+use App\Entity\Film;
 
 class FilmRepository
 {
@@ -27,6 +27,4 @@ class FilmRepository
         // return $this->entityMapperService->mapToEntities($films, Film::class);
         return $films;
     }
-
-    
 }
