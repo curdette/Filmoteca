@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Controller;
-
+use src\Repository\FilmRepository;
 class FilmController
 {
-    // Code de ta classe FilmController ici...
+    private $filmRepository;
+
+    public function __construct()
+    {
+        // Instanciation de FilmRepository
+        $this->filmRepository = new FilmRepository();
+    }
     public function create()
     {
     }
@@ -20,5 +26,8 @@ class FilmController
     public function delete()
     {
     }
+
+
 }
+
 ?>

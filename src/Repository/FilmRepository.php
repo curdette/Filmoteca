@@ -1,4 +1,8 @@
 <?php 
+namespace Src\Repository;
+
+use PDO;
+use PDOException;
 class FilmRepository{
     private $dsn = 'mysql:dbname=testdb;host=127.0.0.1';
     private $user = 'dbuser';
