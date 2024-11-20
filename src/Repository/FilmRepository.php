@@ -1,30 +1,30 @@
-<?php 
-namespace Src\Repository;
+<?php
 
-use PDO;
-use PDOException;
-class FilmRepository{
-    private $dsn = 'mysql:dbname=filmoteca;host=127.0.0.1';
-    private $user = 'filmoteca_user';
-    private $password = 'filmoteca_password';
-    private $dbh;
+namespace App\Repository;
 
-    // Constructeur : établit la connexion à la base de données
-    public function __construct() {
-            $this->dbh = new PDO($this->dsn, $this->user, $this->password);
+use App\Core\DatabaseConnection;
+use App\Service\EntityMapper;
+use App\Entity\FilmEntity;
+
+class FilmRepository
+{
+    private \PDO $db;
+    private EntityMapper $entityMapperService;
+
+    public function __construct()
+    {
+        $this->db = DatabaseConnection::getConnection();
+        $this->entityMapperService = new EntityMapper();
     }
 
-    // Méthode pour récupérer les données
-    public function getInfoFilms():array {
-        $sql = 'SELECT* FROM film';
-        $stmt = $this->dbh->query($sql); // Préparer et exécuter la requête
+    public function findAll(): array
+    {
+        $query = 'SELECT * FROM film';
+        $stmt = $this->db->query($query);
 
-        // Parcourir les résultats
-        $results = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $results[] = $row;
-        }
-        return $results;
+        $films = $stmt->fetchAll();
+
+        // return $this->entityMapperService->mapToEntities($films, Film::class);
+        return $films;
     }
 }
-?>
