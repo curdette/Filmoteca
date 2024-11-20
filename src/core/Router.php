@@ -16,7 +16,7 @@ class Router
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         
         // Récupère les paramètres de la query string (comme ?id=12&name=Inception)
-        $queryParams = $_GET;
+        $queryParams = $_GET; //pour avoir toute les action / info supllementaire
 
         // Définit les routes et leurs contrôleurs associés
         $routes = [
@@ -29,7 +29,7 @@ class Router
             $controller = new $controllerName();
 
             // Appelle une méthode spécifique avec les paramètres de la requête (par exemple, index())
-            $controller->index($queryParams); // On passe les paramètres à la méthode index()
+            $controller->index($queryParams); // On passe les paramètres à la méthode index() . //en gros par exemple si on a un ID on va le donner au controller
         } else {
             // Page non trouvée
             echo "404 Not Found";
