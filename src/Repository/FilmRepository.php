@@ -24,7 +24,6 @@ class FilmRepository
 
         $films = $stmt->fetchAll();
 
-        // return $this->entityMapperService->mapToEntities($films, Film::class);
-        return $films;
+        return $this->entityMapperService->mapToEntities($films, Film::class);
     }
 }
