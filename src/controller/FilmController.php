@@ -6,10 +6,11 @@ class FilmController
 {
     private $filmRepository;
 
-    public function __construct()
+    public function list()
     {
         // Instanciation de FilmRepository
-        $this->filmRepository = new FilmRepository();
+        $filmRepository = new FilmRepository();
+        $recupereFilm = $filmRepository->getInfoFilms();
     }
     public function create()
     {
