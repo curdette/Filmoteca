@@ -52,4 +52,9 @@ class FilmRepository
         // Utilise le service de mappage pour convertir le résultat en objet Film
         return $this->entityMapperService->mapToEntity($film, Film::class);
     }
+
+    public function creat(Film $film, int $id): void{
+        
+    }
+
 }

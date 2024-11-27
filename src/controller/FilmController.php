@@ -41,9 +41,17 @@ class FilmController
         // echo json_encode($films);
     }
 
-    public function create()
+    public function create():void 
     {
-        echo "Création d'un film";
+       /* $filmRepository = new FilmRepository();
+        $title;
+        $year;
+        $type;
+        $synopsis;
+        $director; 
+        $films = $filmRepository->create($title,$year,$type,$synopsis,$director);
+        echo $this->twig->render('create.html.twig', ['films' => $films]);
+        */
     }
 
     public function read(array $queryParams)
