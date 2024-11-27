@@ -9,10 +9,16 @@ use App\Repository\FilmRepository;
 
 class FilmController
 {
+    private \Twig\Environment $twig;
+
+    public function __construct(){
+        $this->twig = \App\Core\TwigEnvironment::create();
+    }
     public function list(array $queryParams)
     {
         $filmRepository = new FilmRepository();
         $films = $filmRepository->findAll();
+        echo $this->twig->render('List.html.twig', ['films' => $films]);
 
         /* $filmEntities = [];
         foreach ($films as $film) {
@@ -29,7 +35,7 @@ class FilmController
             $filmEntities[] = $filmEntity;
         } */
 
-        dd($films);
+       // dd($films);
 
         // header('Content-Type: application/json');
         // echo json_encode($films);
