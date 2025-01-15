@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Film;
 use App\Repository\FilmRepository;
+use App\Service\EntityMapper;
 
 class FilmController
 {
@@ -13,6 +14,7 @@ class FilmController
 
     public function __construct(){
         $this->twig = \App\Core\TwigEnvironment::create();
+        
     }
     public function list(array $queryParams)
     {
@@ -20,39 +22,27 @@ class FilmController
         $films = $filmRepository->findAll();
         echo $this->twig->render('List.html.twig', ['films' => $films]);
 
-        /* $filmEntities = [];
-        foreach ($films as $film) {
-            $filmEntity = new Film();
-            $filmEntity->setId($film['id']);
-            $filmEntity->setTitle($film['title']);
-            $filmEntity->setYear($film['year']);
-            $filmEntity->setType($film['type']);
-            $filmEntity->setSynopsis($film['synopsis']);
-            $filmEntity->setDirector($film['director']);
-            $filmEntity->setCreatedAt(new \DateTime($film['created_at']));
-            $filmEntity->setUpdatedAt(new \DateTime($film['updated_at']));
-
-            $filmEntities[] = $filmEntity;
-        } */
-
-       // dd($films);
-
-        // header('Content-Type: application/json');
-        // echo json_encode($films);
+       
     }
 
     public function create():void 
     {
+        echo "ajouter un film";
+        echo $this->twig->render('create.html.twig');
         $filmRepository = new FilmRepository();
-       /* $filmRepository = new FilmRepository();
-        $title;
-        $year;
-        $type;
-        $synopsis;
-        $director; 
-        $films = $filmRepository->create($title,$year,$type,$synopsis,$director);
-        echo $this->twig->render('create.html.twig', ['films' => $films]);
-        */
+        $filmEntity= new Film();
+        $entityMapper = new EntityMapper();
+        if (isset($_POST["create"])) {
+            $filmEntity=$entityMapper->mapToEntity($_POST,Film::class);
+            $filmRepository->create($filmEntity);
+            echo $this->twig->render('List.html.twig');
+            }
+	    
+       
+        
+       
+        
+      
     }
 
     public function read(array $queryParams)

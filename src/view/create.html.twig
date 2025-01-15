@@ -1,4 +1,13 @@
 {% extends "Mother.html.twig" %}
 {% block main %}
-    
+	<h1>Création de Film</h1>
+	<form action="" method="post" class="formulaire">
+		<input type="text" name="title" placeholder="title" required>
+		<input type="digits" name="year" placeholder="year" required>
+		<input type="text" name="type" placeholder="type" required>
+        <input type="text" name="synopsis" placeholder="synopsis" required>
+		<input type="text" name="director" placeholder="director" required>
+		<button type="submit" name="create" class="submit">Ajouter un film</button>
+	</form>
+	
 {% endblock %}

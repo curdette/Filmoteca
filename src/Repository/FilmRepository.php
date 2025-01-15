@@ -53,10 +53,31 @@ class FilmRepository
         return $this->entityMapperService->mapToEntity($film, Film::class);
     }
 
-    public function create($title, int $year, $synopsis, $director): void{
-        //ajoute ce qu'on donne à la bbd
-        
-        $query = 'INSERT INTO film VALUES ($title, $year, $synopsis, $director)';
+    public function create(Film $filmEntity): String{
+        //Récupérer les infos du filmEntity :
+        $title = $filmEntity->getTitle();
+        $year = $filmEntity->getYear();
+        $type = $filmEntity->getType();
+        $synopsis = $filmEntity->getSynopsis();
+        $director = $filmEntity->getDirector();
+        $phpDateTime = new \DateTime(); 
+        $created_at = $phpDateTime->format('Y-m-d H:i:s');
+        // Préparer la requête SQL
+        $query = 'INSERT INTO film (title, year, type, synopsis, director,created_at) VALUES (:title, :year, :type, :synopsis, :director,:created_at)';
+        $stmt = $this->db->prepare($query);
+
+        // Lier les paramètres
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':year', $year);
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':synopsis', $synopsis);
+        $stmt->bindParam(':director', $director);
+        $stmt->bindParam(':created_at',$created_at);
+
+        // Exécuter la requête
+        $stmt->execute();
+
+        return "Film ajouté avec succès.";
     }
 
 }
