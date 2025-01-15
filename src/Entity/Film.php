@@ -16,13 +16,7 @@ class Film
     private \DateTime $createdAt;
     private ?\DateTime $updatedAt = null;
 
-    // public function __construct($title, $year,$type,$synopsis,$director){
-    //     $this->title=$title;
-    //     $this->year=$year;
-    //     $this->type=$type;
-    //     $this->synopsis=$synopsis;
-    //     $this->director=$director;
-    // }
+   
     public function getId(): int
     {
         return $this->id;

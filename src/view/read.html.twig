@@ -14,10 +14,8 @@
         <th> Mise à jour à</th> 
     </thead>
 
-        <tbody> 
-        {% for film in films %}
+        <tbody>
         <tr> 
-            <td>  {{film.id}} </td>>
             <td> {{film.title}}</td>
             <td> {{film.year}}</td>
             <td> {{film.type}}</td>
@@ -26,12 +24,6 @@
             <td> {{film.deletedAt ? film.deletedAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
             <td> {{film.createdAt ? film.createdAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
             <td> {{film.updtatedAt ? film.updtatedAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
-            <td> <form action="" method="post"> 
-                <input type="hidden" name="id" value = {{film.id}}>
-                <button type="submit" name="delete" > Supprimer
-                <button type"submit" name = "read" > PLus d'information
-                <button type"submit" name = "update" > Modifier
-            </tr>
             {% endfor %}
         </tbody>
         

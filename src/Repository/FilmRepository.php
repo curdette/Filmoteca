@@ -53,15 +53,17 @@ class FilmRepository
         return $this->entityMapperService->mapToEntity($film, Film::class);
     }
 
-    public function create(Film $filmEntity): String{
+    public function create(Film $film): void
+    {
         //Récupérer les infos du filmEntity :
-        $title = $filmEntity->getTitle();
-        $year = $filmEntity->getYear();
-        $type = $filmEntity->getType();
-        $synopsis = $filmEntity->getSynopsis();
-        $director = $filmEntity->getDirector();
-        $phpDateTime = new \DateTime(); 
+        $title = $film->getTitle();
+        $year = $film->getYear();
+        $type = $film->getType();
+        $synopsis = $film->getSynopsis();
+        $director = $film->getDirector();
+        $phpDateTime = new \DateTime();
         $created_at = $phpDateTime->format('Y-m-d H:i:s');
+
         // Préparer la requête SQL
         $query = 'INSERT INTO film (title, year, type, synopsis, director,created_at) VALUES (:title, :year, :type, :synopsis, :director,:created_at)';
         $stmt = $this->db->prepare($query);
@@ -72,12 +74,70 @@ class FilmRepository
         $stmt->bindParam(':type', $type);
         $stmt->bindParam(':synopsis', $synopsis);
         $stmt->bindParam(':director', $director);
-        $stmt->bindParam(':created_at',$created_at);
+        $stmt->bindParam(':created_at', $created_at);
 
         // Exécuter la requête
         $stmt->execute();
 
-        return "Film ajouté avec succès.";
+    }
+    public function update(Film $film): void
+    {
+        //Récupérer les infos du filmEntity :
+        $id = $film->getId();
+        $title = $film->getTitle();
+        $year = $film->getYear();
+        $type = $film->getType();
+        $synopsis = $film->getSynopsis();
+        $director = $film->getDirector();
+        $phpDateTime = new \DateTime();
+        $update_at = $phpDateTime->format('Y-m-d H:i:s');
+
+        // Préparer la requête SQL
+        $query = 'UPDATE film SET 
+        title =:title,
+        year =:year,
+        type =:type,
+        synopsis =:synopsis,
+        director =:director,
+        updated_at =:update_at,
+        WHERE id =:id;';
+        
+        $stmt = $this->db->prepare($query);
+
+        // Lier les paramètres
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':year', $year);
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':synopsis', $synopsis);
+        $stmt->bindParam(':director', $director);
+        $stmt->bindParam(':updated_at', $update_at);
+
+        // Exécuter la requête
+        $stmt->execute();
+
+    }
+
+    public function delete($film): void
+    {
+        $id = $film->getId();
+        $query = 'DELETE FROM films
+        WHERE id = :id;';
+        // Prépare la requête pour éviter les injections SQL
+        $stmt = $this->db->prepare($query);
+        // Exécute la requête avec l'identifiant fourni
+        $stmt->execute(['id' => $id]);
+    }
+
+    public function read($film): Film
+    {
+        $id = $film->getId();
+        $query = 'SELECT * FROM films
+        WHERE id = :id;';
+        // Prépare la requête pour éviter les injections SQL
+        $stmt = $this->db->prepare($query);
+        // Exécute la requête avec l'identifiant fourni
+        $stmt->execute(['id' => $id]);
+        return $this->entityMapperService->mapToEntity($film, Film::class);
     }
 
 }
