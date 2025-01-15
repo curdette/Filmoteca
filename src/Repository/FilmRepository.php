@@ -53,8 +53,10 @@ class FilmRepository
         return $this->entityMapperService->mapToEntity($film, Film::class);
     }
 
-    public function create(Film $film, int $id): void{
-        $query = 'INSERT INTO film (title,)';
+    public function create($title, int $year, $synopsis, $director): void{
+        //ajoute ce qu'on donne à la bbd
+        
+        $query = 'INSERT INTO film VALUES ($title, $year, $synopsis, $director)';
     }
 
 }

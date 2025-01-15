@@ -43,6 +43,7 @@ class FilmController
 
     public function create():void 
     {
+        $filmRepository = new FilmRepository();
        /* $filmRepository = new FilmRepository();
         $title;
         $year;
