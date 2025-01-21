@@ -20,53 +20,60 @@ class FilmController
         $this->filmRepository = new FilmRepository();
         
     }
+
+    public function homePage(){
+        echo $this->twig->render('homePage.html.twig');
+    }
     public function list(array $queryParams)
     {
        
         $films = $this->filmRepository->findAll();
-
-        if(isset($_POST["delete"])){
-            $id = (int)$_POST["id"];
+        $action = $_POST['action']??null;
+        $id=$_POST["id"]??null;
+        if(isset($id) && isset($action)){
+            $id=(int)$id;
             $film =$this->filmRepository->find($id);
-            $this->delete($film);
+            switch($action){
+                case 'delete':
+                    $this->delete($film);
+                    break;
+                case 'read':
+                    $this->read($film); 
+                    break;
+                case 'update':
+                    $this->update($id); 
+                    header('Location: update');
+                    break;
+                    
+            }
+           
         }
-
-        if(isset($_POST["read"])){
-            $id = (int)$_POST["id"];
-            $film =$this->filmRepository->find($id);
-            $this->read($film); 
-      }
-
-        if(isset($_POST["update"])){
-            $id = (int)$_POST["id"];
-            $film =$this->filmRepository->find($id);
-            $this->update($film);
-  }
 
         echo $this->twig->render('List.html.twig', ['films' => $films]);
         
        
     }
-    public function update($film):void {
-        echo $this->twig->render('films/update', ['film' => $film]);
-        if (isset($_POST["update"])) {
-           
-            $film=$this->entityMapperService->mapToEntity($_POST, Film::class);
-            $this->filmRepository->update($film);
-            dd($film);
-            header('Location: films/list');
+    public function update(String $id):void {
+       echo $this->twig->render('update.html.twig');
+            if(isset($_POST["submit"])){
+                echo "je suis dans le submit";
+                var_dump($_POST);
+                
             }
-
+         //   $filmUpdated=$this->entityMapperService->mapToEntity($_GET, Film::class);
+           
+          //  $this->filmRepository->update($filmUpdated);
+            
     }
     public function create():void 
     {
         echo $this->twig->render('create.html.twig');
-        $filmRepository = new FilmRepository();
+    
 
         if (!empty($_POST)) {
            
             $film=$this->entityMapperService->mapToEntity($_POST, Film::class);
-            $filmRepository->create($film);
+            $this->filmRepository->create($film);
             dd($film);
             header('Location: films/list');
             }
@@ -78,16 +85,16 @@ class FilmController
         $filmRepository = new FilmRepository();
         $film = $filmRepository->read($film);
         
-        echo $this->twig->render('films/read.html.twig', ['film' => $film]);
+        echo $this->twig->render('read.html.twig', ['film' => $film]);
        
     }
 
     public function delete(Film $film):void
     {
 
-        echo "Suppression d'un film";
         $filmRepository = new FilmRepository();
         $filmRepository->delete($film);
+        header('Location: list');
         
     }
 }

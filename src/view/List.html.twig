@@ -1,9 +1,13 @@
 {% extends "Mother.html.twig" %}
 {% block main %}
 <!DOCTYPE html>
+    <p> <a href="/films/create" >
+                        <i class="fas fa-arrow-right"></i> Créer un film
+                    </a>
+    </p>
     <table class="table table-success table-striped-columns"> 
     <thead>
-       <th> Id <th>
+       <th> Id </th>
         <th> Titre</th> 
         <th> Année</th> 
         <th> Genre</th> 
@@ -12,13 +16,14 @@
         <th> Supprimer à</th> 
         <th> Créer à</th> 
         <th> Mise à jour à</th> 
+        <th> Action réalisable </th>
     </thead>
 
         <tbody> 
         {% for film in films %}
         <tr> 
-            <td>  {{film.id}} </td>>
-            <td> {{film.title}}</td>
+            <td>  {{film.id}} </td>
+            <td> {{film.title}} </td>
             <td> {{film.year}}</td>
             <td> {{film.type}}</td>
             <td> {{film.synopsis}}</td>
@@ -26,11 +31,13 @@
             <td> {{film.deletedAt ? film.deletedAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
             <td> {{film.createdAt ? film.createdAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
             <td> {{film.updtatedAt ? film.updtatedAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
-            <td> <form action="" method="post"> 
-                <input type="hidden" name="id" value = {{film.id}}>
-                <button type="submit" name="delete" > Supprimer
-                <button type"submit" name = "read" > PLus d'information
-                <button type"submit" name = "update" > Modifier
+            <td>   <form action="" method="post">
+            <input type="hidden" name="id" value="{{ film.id }}">
+            <button type="submit" name="action" value="delete">Supprimer</button>
+            <button type="submit" name="action" value="read">Plus d'information</button>
+            <button type="submit" name="action" value="update">Modifier</button>
+        </form> </td>
+
             </tr>
             {% endfor %}
         </tbody>

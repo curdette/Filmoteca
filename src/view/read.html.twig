@@ -1,32 +1,35 @@
 {% extends "Mother.html.twig" %}
 {% block main %}
 <!DOCTYPE html>
-    <table class="table table-success table-striped-columns"> 
-    <thead>
-       <th> Id <th>
-        <th> Titre</th> 
-        <th> Année</th> 
-        <th> Genre</th> 
-        <th> Synopsis</th> 
-        <th> Director</th> 
-        <th> Supprimer à</th> 
-        <th> Créer à</th> 
-        <th> Mise à jour à</th> 
-    </thead>
-
+<section class="container my-5 p-4 bg-light shadow-sm rounded">
+    <h2 class="text-center text-primary mb-4">Détails du Film</h2>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Année</th>
+                <th>Genre</th>
+                <th>Synopsis</th>
+                <th>Réalisateur</th>
+                <th>Supprimé le</th>
+                <th>Créé le</th>
+                <th>Mis à jour le</th>
+            </tr>
+        </thead>
         <tbody>
-        <tr> 
-            <td> {{film.title}}</td>
-            <td> {{film.year}}</td>
-            <td> {{film.type}}</td>
-            <td> {{film.synopsis}}</td>
-            <td> {{film.director}}</td>
-            <td> {{film.deletedAt ? film.deletedAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
-            <td> {{film.createdAt ? film.createdAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
-            <td> {{film.updtatedAt ? film.updtatedAt|date('Y-m-d H:i:s'):' Aucune date'}}</td>
-            {% endfor %}
+            <tr>
+                <td>{{ film.id }}</td>
+                <td>{{ film.title }}</td>
+                <td>{{ film.year }}</td>
+                <td>{{ film.type }}</td>
+                <td>{{ film.synopsis }}</td>
+                <td>{{ film.director }}</td>
+                <td>{{ film.deletedAt ? film.deletedAt|date('Y-m-d H:i:s') : 'Aucune date' }}</td>
+                <td>{{ film.createdAt ? film.createdAt|date('Y-m-d H:i:s') : 'Aucune date' }}</td>
+                <td>{{ film.updatedAt ? film.updatedAt|date('Y-m-d H:i:s') : 'Aucune date' }}</td>
+            </tr>
         </tbody>
-        
     </table>
-    {% endblock %}
-        
+</section>
+{% endblock %}

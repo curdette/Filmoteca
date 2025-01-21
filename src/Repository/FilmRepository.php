@@ -41,14 +41,17 @@ class FilmRepository
     {
         // Requête SQL pour sélectionner un film par son identifiant
         $query = 'SELECT * FROM film WHERE id = :id';
+       
         // Prépare la requête pour éviter les injections SQL
         $stmt = $this->db->prepare($query);
+
         // Exécute la requête avec l'identifiant fourni
         $stmt->execute(['id' => $id]);
 
         // Récupère le film sous forme de tableau associatif
+        
         $film = $stmt->fetch();
-
+      
         // Utilise le service de mappage pour convertir le résultat en objet Film
         return $this->entityMapperService->mapToEntity($film, Film::class);
     }
@@ -81,7 +84,10 @@ class FilmRepository
 
     }
     public function update(Film $film): void
-    {
+    {   
+        echo"je suis dans le repo update";
+        dd($film);
+
         //Récupérer les infos du filmEntity :
         $id = $film->getId();
         $title = $film->getTitle();
@@ -111,16 +117,18 @@ class FilmRepository
         $stmt->bindParam(':synopsis', $synopsis);
         $stmt->bindParam(':director', $director);
         $stmt->bindParam(':updated_at', $update_at);
+        var_dump($query, ['id' => $id]);
 
         // Exécuter la requête
         $stmt->execute();
+        dd($film);
 
     }
 
     public function delete($film): void
     {
         $id = $film->getId();
-        $query = 'DELETE FROM films
+        $query = 'DELETE FROM film
         WHERE id = :id;';
         // Prépare la requête pour éviter les injections SQL
         $stmt = $this->db->prepare($query);
@@ -131,13 +139,16 @@ class FilmRepository
     public function read($film): Film
     {
         $id = $film->getId();
-        $query = 'SELECT * FROM films
+        $query = 'SELECT * FROM film
         WHERE id = :id;';
-        // Prépare la requête pour éviter les injections SQL
+        
         $stmt = $this->db->prepare($query);
-        // Exécute la requête avec l'identifiant fourni
-        $stmt->execute(['id' => $id]);
-        return $this->entityMapperService->mapToEntity($film, Film::class);
+       
+       $stmt->execute(['id' => $id]);
+       $filmInfo = $stmt->fetch();
+
+        
+        return $this->entityMapperService->mapToEntity($filmInfo, Film::class);
     }
 
 }

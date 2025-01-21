@@ -1,7 +1,8 @@
 {% extends "Mother.html.twig" %}
 {% block main %}
 <!DOCTYPE html>
-<h1 class="text-center my-4">Modifier {{film.title}}</h1>
+<h1 class="text-center my-4">Modifier</h1>
+<div> <p> Décider 
 <div class="container">
     <form action="" method="post" class="needs-validation" novalidate>
         <div class="mb-3">
@@ -22,10 +23,10 @@
         </div>
         <div class="mb-3">
             <label for="director" class="form-label">Réalisateur</label>
-            <input type="text" id="director" name="director" class="form-control" value=="{{film.director}}" required>
+            <input type="text" id="director" name="director" class="form-control" value="{{film.director}}" required>
         </div>
         <div class="d-grid">
-            <button type="submit" name="update" class="btn btn-primary btn-block">Modifer le film</button>
+            <button type ="submit" name="submit" class="btn btn-primary btn-block">Modifer le film</button>
         </div>
     </form>
 </div>
